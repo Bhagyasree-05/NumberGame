@@ -1,21 +1,31 @@
-package tests;
+package main;
 
-import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import java.util.Random;
+import java.util.Scanner;
 
-public class NumberGuessTest {
+public class NumberGuessingGame { // ONLY this class here
+    public static void main(String[] args) {
+        Random random = new Random();
+        Scanner sc = new Scanner(System.in);
 
-    @Test
-    public void sampleTest() {
-        // Set ChromeDriver path
-        System.setProperty("webdriver.chrome.driver", "C:/path/to/chromedriver.exe");
+        int number = random.nextInt(10) + 1; 
+        int guess;
 
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://example.com"); // Optional if web-based test
+        System.out.println("Guess a number between 1 and 10");
 
-        System.out.println("Selenium test ran successfully");
+        do {
+            System.out.print("Enter your guess: ");
+            guess = sc.nextInt();
 
-        driver.quit();
+            if (guess > number) {
+                System.out.println("Too high!");
+            } else if (guess < number) {
+                System.out.println("Too low!");
+            } else {
+                System.out.println("Correct! You won 🎉");
+            }
+        } while (guess != number);
+
+        sc.close();
     }
 }
